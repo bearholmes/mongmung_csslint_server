@@ -15,11 +15,11 @@ export const DEFAULT_EXTENDS = [
 /**
  * Stylelint 기본 플러그인 목록
  * - stylelint-order: CSS 속성 정렬
- * - stylelint-stylistic: 스타일 관련 규칙
+ * - @stylistic/stylelint-plugin: 스타일 관련 규칙 (stylelint 16부터)
  */
 export const DEFAULT_PLUGINS = [
   'stylelint-order',
-  'stylelint-stylistic',
+  '@stylistic/stylelint-plugin',
 ] as const;
 
 /**

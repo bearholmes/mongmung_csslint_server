@@ -150,8 +150,9 @@ export async function lintCode(request: LintRequest): Promise<LintResult> {
     const warnings = extractWarnings(lintResult);
 
     // 출력 포맷팅
+    // stylelint 16부터 output 대신 code 속성 사용 (fix: true일 때 자동 수정된 코드)
     const formattedOutput = formatOutput(
-      lintResult.output ?? code,
+      lintResult.code ?? code,
       outputStyle,
       syntax,
     );

@@ -63,7 +63,7 @@ describe('stylelint config', () => {
       const config = createStylelintConfig({}, 'css');
 
       expect(config.plugins).toContain('stylelint-order');
-      expect(config.plugins).toContain('stylelint-stylistic');
+      expect(config.plugins).toContain('@stylistic/stylelint-plugin');
     });
   });
 
