@@ -49,11 +49,19 @@ export function createStylelintConfig(
   rules: Record<string, StylelintRuleValue>,
   syntax: CssSyntax,
 ): StylelintConfig {
+  // stylelint v16에서 스타일 규칙이 @stylistic/*으로 이동했으므로 호환 매핑 처리
+  const normalizedRules: Record<string, StylelintRuleValue> = { ...rules };
+  if (normalizedRules['color-hex-case'] !== undefined) {
+    normalizedRules['@stylistic/color-hex-case'] =
+      normalizedRules['color-hex-case'];
+    delete normalizedRules['color-hex-case'];
+  }
+
   const config: StylelintConfig = {
     extends: [...DEFAULT_EXTENDS],
     fix: true,
     plugins: [...DEFAULT_PLUGINS],
-    rules: { ...rules },
+    rules: normalizedRules,
   };
 
   const customSyntax = SYNTAX_PARSER_MAP[syntax];

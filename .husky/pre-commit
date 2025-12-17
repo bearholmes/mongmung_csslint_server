@@ -1,6 +1,11 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Bun 설치 경로를 PATH에 추가 (훅은 비로그인 셸이므로 PATH가 제한될 수 있음)
+if [ -d "$HOME/.bun/bin" ]; then
+  export PATH="$HOME/.bun/bin:$PATH"
+fi
+
 npm run format
 npm run lint
 npm test

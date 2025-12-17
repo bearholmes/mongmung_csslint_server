@@ -8,6 +8,7 @@ import {
   CssSyntax,
   OutputStyle,
   StylelintWarning,
+  StylelintRuleValue,
 } from '../types';
 import { createStylelintConfig } from '../config/stylelint';
 import { compactFormatter, nestedFormatter } from '../utils/formatters';
@@ -66,6 +67,56 @@ function extractWarnings(lintResult: LinterResult): StylelintWarning[] {
   }
 
   return firstResult.warnings as StylelintWarning[];
+}
+
+/**
+ * Stylelint 결과에서 자동 수정된 CSS 코드를 추출
+ *
+ * @param lintResult - Stylelint 실행 결과
+ * @param fallback - 추출 실패 시 사용할 기본 코드
+ * @returns 자동 수정된 코드 또는 fallback
+ */
+function extractFixedCode(lintResult: LinterResult, fallback: string): string {
+  const firstResult = lintResult.results?.[0];
+  if (!firstResult) {
+    return fallback;
+  }
+
+  const fixedOutput = (firstResult as { output?: unknown }).output;
+  if (typeof fixedOutput === 'string') {
+    return fixedOutput;
+  }
+
+  const postcssResult = (firstResult as { _postcssResult?: { css?: unknown } })
+    ._postcssResult;
+  if (postcssResult && typeof postcssResult.css === 'string') {
+    return postcssResult.css;
+  }
+
+  return fallback;
+}
+
+/**
+ * color-hex-case 규칙이 설정된 경우 수동으로 대소문자 변환을 보정
+ * stylelint 16에서 스타일 규칙이 플러그인으로 이동하며 자동 수정이 누락될 수 있음
+ */
+function normalizeHexCase(
+  code: string,
+  rules: Record<string, StylelintRuleValue>,
+): string {
+  const ruleValue =
+    rules['@stylistic/color-hex-case'] ?? rules['color-hex-case'] ?? null;
+
+  const primaryOption =
+    Array.isArray(ruleValue) && ruleValue.length > 0 ? ruleValue[0] : ruleValue;
+
+  if (primaryOption !== 'lower' && primaryOption !== 'upper') {
+    return code;
+  }
+
+  return code.replace(/#([0-9A-Fa-f]{3,8})\b/g, (match) =>
+    primaryOption === 'lower' ? match.toLowerCase() : match.toUpperCase(),
+  );
 }
 
 /**
@@ -150,12 +201,11 @@ export async function lintCode(request: LintRequest): Promise<LintResult> {
     const warnings = extractWarnings(lintResult);
 
     // 출력 포맷팅
-    // stylelint 16부터 output 대신 code 속성 사용 (fix: true일 때 자동 수정된 코드)
-    const formattedOutput = formatOutput(
-      lintResult.code ?? code,
-      outputStyle,
-      syntax,
+    const lintedCode = normalizeHexCase(
+      extractFixedCode(lintResult, code),
+      stylelintConfig.rules,
     );
+    const formattedOutput = formatOutput(lintedCode, outputStyle, syntax);
 
     logger.info('Lint completed successfully', {
       warningsCount: warnings.length,

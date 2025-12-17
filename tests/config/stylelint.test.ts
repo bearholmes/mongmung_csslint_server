@@ -13,7 +13,9 @@ describe('stylelint config', () => {
 
       expect(config.extends).toEqual([...DEFAULT_EXTENDS]);
       expect(config.plugins).toEqual([...DEFAULT_PLUGINS]);
-      expect(config.rules).toEqual(rules);
+      expect(config.rules).toEqual({
+        '@stylistic/color-hex-case': 'lower',
+      });
       expect(config.fix).toBe(true);
       expect(config.customSyntax).toBeUndefined();
     });
@@ -24,7 +26,9 @@ describe('stylelint config', () => {
 
       expect(config.extends).toEqual([...DEFAULT_EXTENDS]);
       expect(config.plugins).toEqual([...DEFAULT_PLUGINS]);
-      expect(config.rules).toEqual(rules);
+      expect(config.rules).toEqual({
+        '@stylistic/color-hex-case': 'lower',
+      });
       expect(config.fix).toBe(true);
       expect(config.customSyntax).toBe('postcss-html');
     });
@@ -34,7 +38,10 @@ describe('stylelint config', () => {
       const originalRules = { ...rules };
       const config = createStylelintConfig(rules, 'css');
 
-      expect(config.rules).toEqual(originalRules);
+      expect(config.rules).toEqual({
+        '@stylistic/color-hex-case': 'lower',
+        indentation: 2,
+      });
       expect(rules).toEqual(originalRules); // Original should not be mutated
     });
 
@@ -45,8 +52,12 @@ describe('stylelint config', () => {
       const config1 = createStylelintConfig(rules1, 'css');
       const config2 = createStylelintConfig(rules2, 'html');
 
-      expect(config1.rules).toEqual(rules1);
-      expect(config2.rules).toEqual(rules2);
+      expect(config1.rules).toEqual({
+        '@stylistic/color-hex-case': 'lower',
+      });
+      expect(config2.rules).toEqual({
+        '@stylistic/color-hex-case': 'upper',
+      });
       expect(config1.customSyntax).toBeUndefined();
       expect(config2.customSyntax).toBe('postcss-html');
     });
