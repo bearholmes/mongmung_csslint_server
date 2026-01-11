@@ -31,3 +31,8 @@ dist-ssr
 
 # TypeScript incremental build info
 tsconfig.tsbuildinfo
+
+# AI
+.gemini
+.claude
+.copilot

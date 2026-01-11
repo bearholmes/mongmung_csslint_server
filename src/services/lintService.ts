@@ -134,6 +134,7 @@ export async function lintCode(request: LintRequest): Promise<LintResult> {
   const options: LintOptions = {
     code,
     config: stylelintConfig,
+    fix: true,
   };
 
   try {

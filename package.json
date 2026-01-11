@@ -5,55 +5,56 @@
   "module": "src/index.ts",
   "type": "module",
   "engines": {
-    "node": ">=16",
-    "npm": ">=8"
+    "node": ">=18",
+    "npm": ">=9"
   },
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf dist && echo 'Done.'",
     "format": "prettier . --write",
-    "serve": "NODE_ENV=development bun run src/server.ts",
-    "dev": "NODE_ENV=development bun run src/server.ts",
+    "serve": "NODE_ENV=development bun run src/index.ts",
+    "dev": "NODE_ENV=development bun run src/index.ts",
     "build": "bun build src/index.ts --target bun --outdir dist",
     "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\"",
-    "start": "bun run src/server.ts",
+    "start": "bun run src/index.ts",
     "test": "bun test",
     "test:watch": "bun test --watch",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
-    "@elysiajs/cors": "1",
-    "@elysiajs/static": "1",
-    "@elysiajs/swagger": "1",
-    "@sinclair/typebox": "0.34",
-    "elysia": "1",
-    "figlet": "^1.6.0",
-    "nanoid": "^5.1.6",
-    "postcss": "^8.5.6",
-    "postcss-html": "^1.8.0",
-    "stylelint": "^16.0.0",
+    "@elysiajs/cors": "^1.0.0",
+    "@elysiajs/static": "^1.0.0",
+    "@elysiajs/swagger": "^1.0.0",
+    "@sinclair/typebox": "^0.34.0",
+    "bun": "^1.3.5",
+    "elysia": "^1.0.0",
+    "figlet": "^1.7.0",
+    "nanoid": "^5.0.7",
+    "postcss": "^8.4.38",
+    "postcss-html": "^1.7.0",
+    "stylelint": "^16.6.0",
     "stylelint-config-recommended-scss": "^14.0.0",
-    "stylelint-config-recommended-vue": "^1.6.0",
-    "stylelint-config-standard": "^34.0.0",
+    "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-config-standard": "^36.0.0",
     "stylelint-order": "^6.0.4"
   },
   "devDependencies": {
-    "@stylistic/stylelint-plugin": "^3.0.0",
-    "@types/diff": "^5.0.5",
-    "@types/figlet": "^1.5.6",
-    "@types/postcss-html": "^1.5.3",
+    "@stylistic/stylelint-plugin": "^2.0.0",
+    "@types/diff": "^5.2.0",
+    "@types/figlet": "^1.5.8",
+    "@types/postcss-html": "^1.5.0",
     "@types/stylelint": "^14.0.0",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^6.5.0",
-    "bun-types": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "bun-types": "^1.1.0",
     "eslint": "^8.57.0",
-    "eslint-config-prettier": "^9.0.0",
-    "husky": "^9.1.7",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.0.11",
     "is-plain-object": "^5.0.0",
-    "prettier": "^3.0.3"
+    "prettier": "^3.3.0"
   },
   "peerDependencies": {
-    "typescript": "^5.9.3"
+    "typescript": "^5.4.5"
   },
   "peerDependenciesMeta": {
     "postcss": {
