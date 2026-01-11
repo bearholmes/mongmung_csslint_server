@@ -50,8 +50,6 @@ export interface StylelintWarning {
 export interface StylelintConfig {
   /** 확장할 기본 설정 목록 */
   extends: string[];
-  /** 자동 수정 활성화 여부 */
-  fix: boolean;
   /** 사용할 플러그인 목록 */
   plugins: string[];
   /** 린트 규칙 설정 */
@@ -68,6 +66,8 @@ export interface LintOptions {
   code: string;
   /** Stylelint 설정 */
   config: StylelintConfig;
+  /** 자동 수정 활성화 여부 */
+  fix?: boolean;
 }
 
 /**

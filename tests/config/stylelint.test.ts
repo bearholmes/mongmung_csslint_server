@@ -16,7 +16,6 @@ describe('stylelint config', () => {
       expect(config.rules).toEqual({
         '@stylistic/color-hex-case': 'lower',
       });
-      expect(config.fix).toBe(true);
       expect(config.customSyntax).toBeUndefined();
     });
 
@@ -29,7 +28,6 @@ describe('stylelint config', () => {
       expect(config.rules).toEqual({
         '@stylistic/color-hex-case': 'lower',
       });
-      expect(config.fix).toBe(true);
       expect(config.customSyntax).toBe('postcss-html');
     });
 

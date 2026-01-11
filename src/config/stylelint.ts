@@ -59,7 +59,6 @@ export function createStylelintConfig(
 
   const config: StylelintConfig = {
     extends: [...DEFAULT_EXTENDS],
-    fix: true,
     plugins: [...DEFAULT_PLUGINS],
     rules: normalizedRules,
   };
