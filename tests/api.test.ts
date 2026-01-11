@@ -76,7 +76,7 @@ describe('API Integration Tests', () => {
           code: 'body { color: #FFF; }',
           syntax: 'css',
           config: {
-            rules: { 'color-hex-case': 'lower' },
+            rules: { '@stylistic/color-hex-case': 'lower' },
             outputStyle: 'compact',
           },
         }),
@@ -128,7 +128,7 @@ describe('API Integration Tests', () => {
           code: '',
           syntax: 'css',
           config: {
-            rules: { 'color-hex-case': 'lower' },
+            rules: { '@stylistic/color-hex-case': 'lower' },
           },
         }),
       });
@@ -149,7 +149,7 @@ describe('API Integration Tests', () => {
           code: 'body { color: red; }',
           syntax: 'invalid',
           config: {
-            rules: { 'color-hex-case': 'lower' },
+            rules: { '@stylistic/color-hex-case': 'lower' },
           },
         }),
       });
@@ -195,7 +195,7 @@ describe('API Integration Tests', () => {
           code: '<style> body { color: #FFF; } </style>',
           syntax: 'html',
           config: {
-            rules: { 'color-hex-case': 'lower' },
+            rules: { '@stylistic/color-hex-case': 'lower' },
           },
         }),
       });
@@ -256,7 +256,7 @@ describe('API Integration Tests', () => {
           syntax: 'css',
           config: {
             rules: {
-              'color-hex-case': 'lower',
+              '@stylistic/color-hex-case': 'lower',
               'length-zero-no-unit': true,
             },
             outputStyle: 'nested',

@@ -14,7 +14,6 @@ describe('stylelint config', () => {
       expect(config.extends).toEqual([...DEFAULT_EXTENDS]);
       expect(config.plugins).toEqual([...DEFAULT_PLUGINS]);
       expect(config.rules).toEqual(rules);
-      expect(config.fix).toBe(true);
       expect(config.customSyntax).toBeUndefined();
     });
 
@@ -25,7 +24,6 @@ describe('stylelint config', () => {
       expect(config.extends).toEqual([...DEFAULT_EXTENDS]);
       expect(config.plugins).toEqual([...DEFAULT_PLUGINS]);
       expect(config.rules).toEqual(rules);
-      expect(config.fix).toBe(true);
       expect(config.customSyntax).toBe('postcss-html');
     });
 

@@ -10,7 +10,7 @@ describe('lintService', () => {
         code: '',
         syntax: 'css',
         config: {
-          rules: { 'color-hex-case': 'lower' },
+          rules: { '@stylistic/color-hex-case': 'lower' },
         },
       };
 
@@ -24,7 +24,7 @@ describe('lintService', () => {
         code: '   \n  \t  ',
         syntax: 'css',
         config: {
-          rules: { 'color-hex-case': 'lower' },
+          rules: { '@stylistic/color-hex-case': 'lower' },
         },
       };
 
@@ -38,7 +38,7 @@ describe('lintService', () => {
         code: 'body { color: red; }',
         syntax: 'invalid',
         config: {
-          rules: { 'color-hex-case': 'lower' },
+          rules: { '@stylistic/color-hex-case': 'lower' },
         },
       };
 
@@ -83,7 +83,7 @@ describe('lintService', () => {
         code: 'body { color: #FFF; }',
         syntax: 'css',
         config: {
-          rules: { 'color-hex-case': 'lower' },
+          rules: { '@stylistic/color-hex-case': 'lower' },
           outputStyle: 'compact',
         },
       };
@@ -101,7 +101,7 @@ describe('lintService', () => {
         code: 'body { color: #FFF; }',
         syntax: 'css',
         config: {
-          rules: { 'color-hex-case': 'upper' },
+          rules: { '@stylistic/color-hex-case': 'upper' },
         },
       };
 
@@ -177,7 +177,7 @@ describe('lintService', () => {
         code: '<style> body { color: #FFF; } </style>',
         syntax: 'html',
         config: {
-          rules: { 'color-hex-case': 'lower' },
+          rules: { '@stylistic/color-hex-case': 'lower' },
         },
       };
 
